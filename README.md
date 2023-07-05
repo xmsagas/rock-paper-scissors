@@ -1,6 +1,6 @@
 # rock-paper-scissors
 ## about
-Simple rock, paper scissors game against the computer! 
+Simple rock, paper, scissors game against the computer! 
 
 
 ## extra details
