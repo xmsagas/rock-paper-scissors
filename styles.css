@@ -38,9 +38,11 @@ h1, h2 {
     border-radius: 8px;
 }
 
-hr{
-    color: rgb(204, 64, 188);
+#divider{
+    background-color: rgb(204, 64, 188);
     width: 100%;
+    height: 2px;
+    margin-bottom: 3%;
 }
 
 #playerScore, #computerScore {
