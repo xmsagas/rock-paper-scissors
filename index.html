@@ -4,29 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Rock, Paper, Scissors</h1>
 
         <div class="buttons">
-            <button type="button" id="rock">Rock</button>
-            <button type="button" id="paper">Paper</button>
-            <button type="button" id="scissors">Scissors</button>
+            <button type="button" id="rock"><img src="img/rock.png" alt="rock"></button>
+            <button type="button" id="paper"><img src="img/paper.png" alt="paper"></button>
+            <button type="button" id="scissors"><img src="img/scissors.png" alt="scissors"></button>
+        </div>
+
+        <div class="computer">
+            <p>Computer choice:</p>
+            <img src="" alt="" id="computerChoice">
+            <h2 id="roundWinner"></h2>
         </div>
 
         <div id="results">
-            <h3>Scores</h3>
+            <h3>Scoreboard</h3>
             <hr>
-            <div class="player">
-                <span>You: </span>
-                <span id="playerScore">0</span>
+            <div class="players">
+                <div class="player">
+                    <div id="playerScore">0</div>
+                    <div>You</div>
+                </div>
+                <div class="player">
+                    <div id="computerScore">0</div>
+                    <div>Computer</div>
+                </div>
             </div>
-            <div class="player">
-                <span>Computer: </span>
-                <span id="computerScore">0</span>
-            </div>
-            <div id="winner"></div>
         </div>
     </div>
     

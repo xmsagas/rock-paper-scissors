@@ -4,6 +4,15 @@
 function getComputerChoice(){
     const optionsGame = ['rock', 'paper', 'scissors'];
     let computerChoice = optionsGame[Math.floor(Math.random() * 3)];
+    
+    if (computerChoice == 'rock') {
+        computerChoiceImg = "img/rock.png";
+    } else if (computerChoice == 'paper') {
+        computerChoiceImg = "img/paper.png";
+    } else {
+        computerChoiceImg = "img/scissors.png";
+    }
+
     return computerChoice;
 }
 
@@ -37,55 +46,71 @@ function playRound(playerSelection, computerSelection){
             winner = 'computer';
         } 
     }
-
     return winner;
 }
 
 function game(playerSelection){
     let computerSelection = getComputerChoice();
+    imgComputer.src = computerChoiceImg;
+    animate(imgComputer);
 
     let winner = playRound(playerSelection, computerSelection);
         
     if(winner == 'computer'){
         computerWins++;
-        console.log('The computer won the round');
     } else if(winner == 'player'){
         playerWins++;
-        console.log('You won the round');
     } else {
         ties++;
-        console.log("It's a tie");
     }
     
     playerScore.textContent = playerWins;
     computerScore.textContent = computerWins;
 
     if(computerWins > playerWins && computerWins == 5){
-        alert("You lost :(");
+        winnerH2.textContent = "You lost :(";
         computerWins = playerWins = ties = 0;
     } else if (computerWins < playerWins && playerWins == 5){
-        alert("You won!");
+        winnerH2.textContent = "You won! :D";
         computerWins = playerWins = ties = 0;
     }
 }
 
 const playerScore = document.querySelector("#playerScore");
 const computerScore = document.querySelector("#computerScore");
+const choicesDiv = document.querySelector(".choices");
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
 const resultDiv = document.querySelector("#results");
+const imgComputer = document.querySelector("#computerChoice");
+const winnerH2 = document.querySelector("h2");
+let computerChoiceImg;
 
 let computerWins = playerWins = ties = 0;
 
 rockBtn.addEventListener("click", function () {
+    winnerH2.textContent = "";
+    animate(rockBtn);
     game("rock");
 });
 
 paperBtn.addEventListener("click", function () {
+    winnerH2.textContent = "";
+    animate(paperBtn);
     game("paper");
 })
 
 scissorsBtn.addEventListener("click", function () {
+    winnerH2.textContent = "";
+    animate(scissorsBtn);
     game("scissors");
 })
+
+function animate(btn) {
+    btn.classList.add("animationjs");
+
+    setTimeout(function () {
+        btn.classList.remove("animationjs");
+    }, 1500);
+}
