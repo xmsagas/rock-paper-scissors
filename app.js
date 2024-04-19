@@ -40,34 +40,52 @@ function playRound(playerSelection, computerSelection){
 
     return winner;
 }
-    
-// game function - 5 rounds game keeps score and reports winner or loser
 
-function game(){
-    let computerWins = playerWins = ties = 0;
-    for(let round = 1; round <= 5; round++){
-        let playerSelection = prompt('write your choice (rock, paper, scissors): ').toLowerCase();
-        let computerSelection = getComputerChoice();
+function game(playerSelection){
+    let computerSelection = getComputerChoice();
 
-        let winner = playRound(playerSelection, computerSelection);
+    let winner = playRound(playerSelection, computerSelection);
         
-        if(winner == 'computer'){
-            computerWins++;
-            console.log('The computer won the round');
-        } else if(winner == 'player'){
-            playerWins++;
-            console.log('You won the round');
-        } else {
-            ties++;
-            console.log("It's a tie");
-        }
-    }
-
-    if(computerWins > playerWins){
-        console.log("You lost :(");
-    } else if (computerWins < playerWins){
-        console.log("You won!");
+    if(winner == 'computer'){
+        computerWins++;
+        console.log('The computer won the round');
+    } else if(winner == 'player'){
+        playerWins++;
+        console.log('You won the round');
     } else {
-        console.log('You tied!');
+        ties++;
+        console.log("It's a tie");
+    }
+    
+    playerScore.textContent = playerWins;
+    computerScore.textContent = computerWins;
+
+    if(computerWins > playerWins && computerWins == 5){
+        alert("You lost :(");
+        computerWins = playerWins = ties = 0;
+    } else if (computerWins < playerWins && playerWins == 5){
+        alert("You won!");
+        computerWins = playerWins = ties = 0;
     }
 }
+
+const playerScore = document.querySelector("#playerScore");
+const computerScore = document.querySelector("#computerScore");
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const resultDiv = document.querySelector("#results");
+
+let computerWins = playerWins = ties = 0;
+
+rockBtn.addEventListener("click", function () {
+    game("rock");
+});
+
+paperBtn.addEventListener("click", function () {
+    game("paper");
+})
+
+scissorsBtn.addEventListener("click", function () {
+    game("scissors");
+})
